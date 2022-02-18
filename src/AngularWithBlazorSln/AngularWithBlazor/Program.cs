@@ -23,7 +23,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.MapBlazorHub();
+app.MapBlazorHub(options => 
+{
+    //Workaround to avoid the Websockets error
+    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.LongPolling;
+});
 
 app.MapControllerRoute(
     name: "default",
