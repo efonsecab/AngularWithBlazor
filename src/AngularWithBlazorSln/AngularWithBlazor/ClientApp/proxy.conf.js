@@ -7,6 +7,9 @@ const PROXY_CONFIG = [
   {
     context: [
       "/weatherforecast",
+      "/_blazor",
+      "/_content",
+      "/_framework"
    ],
     target: target,
     secure: false

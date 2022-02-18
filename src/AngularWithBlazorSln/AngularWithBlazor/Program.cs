@@ -1,8 +1,15 @@
+using AngularWithBlazor.BlazorComponents;
+using Microsoft.AspNetCore.Components.Web;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddServerSideBlazor(options => 
+{
+    options.RootComponents.RegisterAsCustomElement<BlazorList>("blazor-list");
+});
 
 var app = builder.Build();
 
@@ -16,7 +23,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
+app.MapBlazorHub();
 
 app.MapControllerRoute(
     name: "default",
