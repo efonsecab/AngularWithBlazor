@@ -1,2 +1,11 @@
 <h1>Hello, world!</h1>
-<blazor-list></blazor-list>
+Angular Users: {{users}}
+<ul>
+  <li *ngFor="let item of users; index as i; ">
+    Name: {{item.name}}
+  </li>
+</ul>
+Blazor Component Below
+<div *ngIf="users?.length ">
+  <blazor-list [userslist]="users"></blazor-list>
+</div>

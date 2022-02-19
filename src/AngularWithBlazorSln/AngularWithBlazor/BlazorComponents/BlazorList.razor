@@ -3,11 +3,27 @@
 
 This will be a list
 
+@if (this.userslist != null)
+{
+    <p>Users: </p>
+    <ul class="list-group">
+
+    @foreach (var singleUser in this.userslist)
+    {
+        <li class="list-group-item-secondary">Name: @singleUser.name</li>
+    }
+    </ul>
+}
+
 
 <button onclick="@( ()=>OnButtonClicked())">Click Me!</button>
 @code{
     [Inject]
     private IJSRuntime _jsRuntime { get; set; }
+    [Parameter]
+    public Models.UserInfo[] userslist { get; set; }
+
+
     private async Task OnButtonClicked()
     {
         await _jsRuntime.InvokeVoidAsync("alert", "Button Clicked!");
